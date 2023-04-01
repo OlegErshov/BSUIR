@@ -4,18 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:pages ="clr-namespace:MauiApp1.Pages"
+    Shell.FlyoutBehavior="Flyout">
 
-    
 
-    <TabBar>
 
-        
-
-        <Tab Title="Lab2">
-            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" />
+    <FlyoutItem Title="Home">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:Lab3}"/>
         </Tab>
-        
-    </TabBar>
+    </FlyoutItem>
 
 </Shell>

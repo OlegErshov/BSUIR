@@ -15,9 +15,7 @@ namespace MauiApp1.Services
         IEnumerable<Hero> GetAllHeroes();
         IEnumerable<SuperPower> GetHeroSuperPowers(int id);
 
-        void AddHero(string name, int id);
-
-        void AddSuperPower(string name, int id);
+    
         void Init();
     }
 }

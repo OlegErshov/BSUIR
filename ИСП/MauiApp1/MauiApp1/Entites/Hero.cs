@@ -10,10 +10,11 @@ namespace MauiApp1.Entites
     [Table("Heroes")]
     public class Hero
     {
-        [PrimaryKey, AutoIncrement, Indexed]
-        public string Name { get; set; }   
+        public string Name { get; set; }
+
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        
+
         public Hero(string name,int id)
         {
             Name = name;    

@@ -10,14 +10,17 @@ namespace MauiApp1.Entites
     [Table("SuperPowers")]
     public class SuperPower
     {
-        [PrimaryKey,AutoIncrement,Indexed]
-        public string Name { get; set; }
+        public string PowerName { get; set; }
+
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+
         [Indexed]
         public int HeroId { get; set; }
 
         public SuperPower(string name, int heroId)
         {
-            Name = name;
+            PowerName = name;
             HeroId = heroId;
         }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Pages.Lab3"
+             Loaded="OnPageLoaded"
+             xmlns:local="clr-namespace:MauiApp1.Pages"
+             xmlns:entity="clr-namespace:MauiApp1.Entites"
+             x:DataType="local:Lab3"
+           
+             Title="Lab3">
+    <VerticalStackLayout>
+        <Picker x:Name="picker"
+                Title="Heroes"
+                ItemsSource="{Binding Heroes}"
+                ItemDisplayBinding="{Binding Name}"
+                SelectedIndexChanged="OnSelectedIndexChanged"
+                HorizontalOptions="Center"
+                FontSize="Medium" 
+                Margin="5"/>
+
+        <ListView ItemsSource="{Binding SuperPoweres}" x:Name="PowerListView">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="entity:SuperPower">
+                    <ViewCell>
+                        <Label
+                            Text="{Binding PowerName}"
+                            />
+                    </ViewCell>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        
+    </VerticalStackLayout>
+</ContentPage>

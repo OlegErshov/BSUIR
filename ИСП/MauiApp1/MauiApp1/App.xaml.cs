@@ -1,11 +1,16 @@
-﻿namespace MauiApp1;
+﻿using MauiApp1.Entites;
+
+namespace MauiApp1;
 
 public partial class App : Application
 {
-	public App()
+    
+    public App()
 	{
 		InitializeComponent();
 
 		MainPage = new AppShell();
+
+		
 	}
 }

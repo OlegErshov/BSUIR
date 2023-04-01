@@ -7,67 +7,77 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MauiApp1;
+
 
 namespace MauiApp1.Services
 {
     public class SQLiteService : IDbService
     {
-        SQLiteConnection HeroesDatabase = null;
-        SQLiteConnection SuperPowersDatabase = null;
-
-        public void AddHero(string name, int id)
-        {
-            Hero hero = new Hero(name,id);
-            HeroesDatabase.Insert(hero);
-        }
-
-        public void AddSuperPower(string name, int Heroid)
-        {
-            SuperPower superPower = new SuperPower(name,Heroid);
-            var alreadyExist = from p in SuperPowersDatabase.Table<SuperPower>()
-                               where p.HeroId == Heroid
-                               select p;
-            if (alreadyExist == null)
-            {
-                SuperPowersDatabase.Insert(superPower);
-            }
-            else
-            {
-                SuperPowersDatabase.Update(superPower);
-            }
-
-            
-        }
-
+        
         public IEnumerable<Hero> GetAllHeroes()
         {
             Init();
-            return HeroesDatabase.Table<Hero>();
+            return _conn.Table<Hero>();
         }
 
         public IEnumerable<SuperPower> GetHeroSuperPowers(int id)
         {
             Init();
-           // List<SuperPower> HeroSuperPowers = new List<SuperPower>();
-           // HeroSuperPowers =  SuperPowersDatabase.Table<SuperPower>().ToList<SuperPower>();
-           var HeroSuperPowers = from k in SuperPowersDatabase.Table<SuperPower>().ToList<SuperPower>()
-                              where k.HeroId == id
-                              select k;
-            return HeroSuperPowers.ToList<SuperPower>();
+            return _conn.Table<SuperPower>().Where(x => x.HeroId == id);
         }
 
+
+        private string _dbPath;
+        private SQLiteConnection _conn;
         public  void Init()
         {
-            if(HeroesDatabase != null)
+            if(_conn != null)
             {
                 return;
             }
-            
-            HeroesDatabase = new SQLiteConnection(DBConstants.HeroDatabasePath, DBConstants.Flags);
-            var result1 =  HeroesDatabase.CreateTable<Hero>();
-            SuperPowersDatabase = new SQLiteConnection(DBConstants.SuperPowersDatabasePath, DBConstants.Flags);
-            var result2 =  SuperPowersDatabase.CreateTable<SuperPower>();
 
+            _dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "lab3.db");
+
+            _conn = new SQLiteConnection(_dbPath);
+
+            _conn.DropTable<Hero>();
+            _conn.DropTable<SuperPower>();
+
+            _conn.CreateTable<Hero>();
+            _conn.CreateTable<SuperPower>();
+            
+
+
+            List<Hero> heroList = new List<Hero>() {
+
+                new Hero {Name = "SpiderMan"},
+                new Hero {Name = "IronMan"},
+                new Hero {Name = "Thor"}
+
+            };
+
+            List<SuperPower> powersList = new List<SuperPower>()
+            { 
+                new SuperPower {PowerName = "Regeneration", HeroId= 1},
+                new SuperPower {PowerName = "Phisical strength",HeroId = 1},
+                new SuperPower {PowerName = "SpiderIntuition",HeroId = 1},
+
+                new SuperPower {PowerName = "Intelegent",HeroId = 2},
+                new SuperPower {PowerName = "Money", HeroId = 2},
+                new SuperPower {PowerName = "AC/DC soundtreck", HeroId = 2},
+                new SuperPower {PowerName = "Iron costume", HeroId = 2},
+
+                new SuperPower {PowerName = "Thunder and lights", HeroId = 3},
+                new SuperPower {PowerName = "Hummer", HeroId = 3},
+                new SuperPower {PowerName = "Stamina", HeroId = 3 }
+
+            };
+
+            _conn.InsertAll(heroList);
+            _conn.InsertAll(powersList);
+
+            
         }
     }
 }
