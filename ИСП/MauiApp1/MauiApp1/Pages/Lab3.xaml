@@ -8,21 +8,27 @@
              x:DataType="local:Lab3"
            
              Title="Lab3">
-    <VerticalStackLayout>
+    <Grid RowDefinitions="*" ColumnDefinitions="*,*">
+        
         <Picker x:Name="picker"
                 Title="Heroes"
+                
                 ItemsSource="{Binding Heroes}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedIndexChanged="OnSelectedIndexChanged"
                 HorizontalOptions="Center"
                 FontSize="Medium" 
+                Grid.Row="0"
+                Grid.Column="0"
                 Margin="5"/>
 
-        <ListView ItemsSource="{Binding SuperPoweres}" x:Name="PowerListView">
+        <ListView ItemsSource="{Binding SuperPoweres}" x:Name="PowerListView" Margin="5" Grid.Row="0" Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="entity:SuperPower">
-                    <ViewCell>
+                    <ViewCell Height="250">
                         <Label
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
                             Text="{Binding PowerName}"
                             />
                     </ViewCell>
@@ -32,5 +38,5 @@
             
         </ListView>
         
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
