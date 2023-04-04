@@ -8,27 +8,38 @@
              x:DataType="local:Lab3"
            
              Title="Lab3">
-    <Grid RowDefinitions="*" ColumnDefinitions="*,*">
+    <Grid RowDefinitions="*,2.5*" 
+          Padding="40"
+          BackgroundColor ="#A0BE93"
+          >
         
         <Picker x:Name="picker"
                 Title="Heroes"
-                
+                BackgroundColor="#E8E4DB"
                 ItemsSource="{Binding Heroes}"
                 ItemDisplayBinding="{Binding Name}"
                 SelectedIndexChanged="OnSelectedIndexChanged"
                 HorizontalOptions="Center"
                 FontSize="Medium" 
                 Grid.Row="0"
-                Grid.Column="0"
                 Margin="5"/>
 
-        <ListView ItemsSource="{Binding SuperPoweres}" x:Name="PowerListView" Margin="5" Grid.Row="0" Grid.Column="1">
+        <ListView ItemsSource="{Binding SuperPoweres}" 
+                  x:Name="PowerListView" 
+                  Margin="5" Grid.Row="1" 
+                  
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="entity:SuperPower">
-                    <ViewCell Height="250">
+                    <ViewCell >
                         <Label
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"
+                            BackgroundColor="#E8E4DB"
+                            FontSize="Medium"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            FontAutoScalingEnabled="True"
                             Text="{Binding PowerName}"
                             />
                     </ViewCell>
