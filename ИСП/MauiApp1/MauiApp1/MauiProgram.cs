@@ -25,6 +25,10 @@ public static class MauiProgram
         builder.Services.AddTransient<IDbService, SQLiteService>();
 		builder.Services.AddSingleton<Lab3>();
 
+        builder.Services.AddHttpClient<IRateService, RateService>(opt => opt.BaseAddress = new Uri("https://www.nbrb.by/api/exrates/rates/"));
+        builder.Services.AddSingleton<CurrencyConverter>();
+        builder.Services.AddHttpClient<ICurrencyService, CurrencyService>(opt => opt.BaseAddress = new Uri("https://www.nbrb.by/api/exrates/currencies"));
+
 
         builder.Logging.AddDebug();
 

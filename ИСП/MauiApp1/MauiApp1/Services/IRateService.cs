@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Services
 {
-    internal interface IRateService
+    public interface IRateService
     {
-        Task<Rate> GetRates(DateTime date);
+        Task<Rate> GetRates(DateTime date,Currency currency);
     }
 }
