@@ -14,9 +14,9 @@ public partial class Lab3 : ContentPage
     public Lab3(IDbService dbService)
     {
         InitializeComponent();
-
         _dbService = dbService as SQLiteService;
         _dbService.Init();
+        Heroes = new ObservableCollection<Hero>(_dbService.GetAllHeroes());
         BindingContext = this;
         
     }
@@ -27,12 +27,7 @@ public partial class Lab3 : ContentPage
         InitializeComponent();
     }
 
-    private void OnPageLoaded(object sender, EventArgs e)
-    {
-        Heroes = new ObservableCollection<Hero>(_dbService.GetAllHeroes());
-        picker.ItemsSource = null;
-        picker.ItemsSource = Heroes;
-    }
+   
 
     private void OnSelectedIndexChanged(object sender, EventArgs e)
     {

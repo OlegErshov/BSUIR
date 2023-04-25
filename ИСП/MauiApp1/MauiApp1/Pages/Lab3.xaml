@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Pages.Lab3"
-             Loaded="OnPageLoaded"
              xmlns:local="clr-namespace:MauiApp1.Pages"
              xmlns:entity="clr-namespace:MauiApp1.Entites"
+             BackgroundColor="Blue"
              x:DataType="local:Lab3"
            
              Title="Lab3">
@@ -25,13 +25,13 @@
                 Margin="5"/>
 
         <ListView ItemsSource="{Binding SuperPoweres}" 
-                  x:Name="PowerListView" 
-                  Margin="5" Grid.Row="1" 
-                  
+                  x:Name="PowerListView"
+                  Margin="5" 
+                  Grid.Row="1" 
                   >
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="entity:SuperPower">
-                    <ViewCell >
+                <DataTemplate x:DataType="entity:SuperPower" >
+                    <ViewCell>
                         <Label
                             BackgroundColor="#E8E4DB"
                             FontSize="Medium"

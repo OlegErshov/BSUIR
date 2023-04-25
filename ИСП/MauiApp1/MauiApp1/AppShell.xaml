@@ -9,10 +9,15 @@
 
 
 
-    <FlyoutItem Title="Home">
-        <Tab>
+    <FlyoutItem Title="Home" >
+        <Tab Title="Lab3">
             <ShellContent ContentTemplate="{DataTemplate pages:Lab3}"/>
         </Tab>
+
+        <Tab Title="Lab2">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+        </Tab>
+
     </FlyoutItem>
 
 </Shell>

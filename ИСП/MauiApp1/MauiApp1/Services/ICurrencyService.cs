@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MauiApp1.Services
 {
-    internal interface IRateService
+    public interface ICurrencyService
     {
-        Task<Rate> GetRates(DateTime date);
+        Task<IEnumerable<Currency>> GetCurrenciesAsync();
     }
 }
